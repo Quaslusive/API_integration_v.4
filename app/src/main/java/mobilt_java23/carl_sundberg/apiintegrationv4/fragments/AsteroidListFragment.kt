@@ -20,15 +20,7 @@ import mobilt_java23.carl_sundberg.apiintegrationv4.model.Asteroid
 
 class AsteroidListFragment : Fragment() {
 
-    private var columnCount = 1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
+    // ... (andra delar av koden)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,26 +32,37 @@ class AsteroidListFragment : Fragment() {
         val asteroidList: List<Asteroid> = listOf(
             Asteroid("1", "Asteroid 2023 AB", "2023-09-11", 120.5, 34000.0, 0.01),
             Asteroid("2", "Asteroid 2023 CD", "2023-09-12", 85.3, 45000.0, 0.03)
-            // Add more mock data here
         )
 
         // Set the adapter with clickListener
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
+                layoutManager = LinearLayoutManager(context)
                 adapter = AsteroidAdapter(asteroidList) { asteroid ->
-                    // Navigate to the details fragment using directions
-                    val action =
-                        AsteroidListFragmentDirections.actionToAsteroidDetailsFragment(asteroid.id)
-                    findNavController().navigate(action)
+                    // Skapa en ny instans av AsteroidDetailFragment
+                    val fragment = AsteroidDetailFragment()
+
+                    // Skapa ett Bundle-objekt för att hålla argumenten
+                    val bundle = Bundle()
+                    bundle.putString("asteroidId", asteroid.id)
+
+                    // Sätt argumenten på fragmentet
+                    fragment.arguments = bundle
+
+                    // Navigera till AsteroidDetailFragment
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment) // Ersätt 'fragment_container' med din container-id
+                        .addToBackStack(null)
+                        .commit()
                 }
             }
         }
         return view
     }
+
+    // ... (resten av koden)
+
+
 
     companion object {
         const val ARG_COLUMN_COUNT = "column-count"
