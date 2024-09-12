@@ -1,4 +1,4 @@
-package mobilt_java23.carl_sundberg.apiintegrationv4.model
+package mobilt_java23.carl_sundberg.apiintegrationv4.network
 
 data class AsteroidDetails(
     val id: String,

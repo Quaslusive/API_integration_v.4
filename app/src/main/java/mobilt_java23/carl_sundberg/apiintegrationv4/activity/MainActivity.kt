@@ -1,4 +1,4 @@
-package mobilt_java23.carl_sundberg.apiintegrationv4
+package mobilt_java23.carl_sundberg.apiintegrationv4.activity
 
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import mobilt_java23.carl_sundberg.apiintegrationv4.R
 import mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -28,10 +29,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
 
 
-        // Sätt Toolbar som ActionBar
+        // Hämta Toolbar från layouten och sätt som ActionBar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        // Hämta NavController och sätt upp ActionBar
+        val navController = findNavController(R.id.fragment_container)
+        setupActionBarWithNavController(navController)
 
         // Hämta knapparna och sätt OnClickListener
         val showAsteroidsButton: Button = findViewById(R.id.button_show_asteroids)
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
         // Lägg till OnClickListener för knappar
         showAsteroidsButton.setOnClickListener {
-            navController.navigate(R.id.action_to_asteroidDetailFragment)
+            navController.navigate(R.id.asteroidDetailFragment)
         }
 //
 //        searchByIdButton.setOnClickListener {
@@ -53,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         searchByIdButton.setOnClickListener {
             // Navigera till dagens asteroider
-            findNavController(R.id.fragment_container).navigate(R.id.action_to_asteroidTodayFragment)
+            findNavController(R.id.fragment_container).navigate(R.id.asteroidTodayFragment)
         }
 
 
@@ -61,8 +65,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
     }
 
-    // Om du använder Navigation Component och hanterar "bakåt"-knappen med ActionBar
     override fun onSupportNavigateUp(): Boolean {
-        return super.onSupportNavigateUp()
+        val navController = findNavController(R.id.fragment_container)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

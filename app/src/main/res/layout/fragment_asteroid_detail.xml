@@ -24,7 +24,8 @@
         android:text="Diameter: "
         app:layout_constraintTop_toBottomOf="@id/asteroid_name"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/asteroid_velocity"
@@ -33,7 +34,8 @@
         android:text="Hastighet: "
         app:layout_constraintTop_toBottomOf="@id/asteroid_diameter"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/asteroid_distance"
@@ -42,7 +44,8 @@
         android:text="Avstånd till jorden: "
         app:layout_constraintTop_toBottomOf="@id/asteroid_velocity"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/asteroid_detail_text"

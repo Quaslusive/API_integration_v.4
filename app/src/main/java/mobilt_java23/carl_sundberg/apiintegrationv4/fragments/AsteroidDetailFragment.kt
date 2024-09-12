@@ -7,25 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
+import mobilt_java23.carl_sundberg.apiintegrationv4.viewModel.AsteroidViewModel
 
 class AsteroidDetailFragment : Fragment() {
 
-    private var asteroidId: String? = null
+    private val asteroidViewModel: AsteroidViewModel by activityViewModels()
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_asteroid_detail, container, false)
 
-        // Hämta asteroidId från argumenten
-        asteroidId = arguments?.getString("asteroidId")
-
-        // Visa asteroid-id i en TextView (för demoändamål)
+        // Hämta TextView för att visa asteroidens detaljer
         val textView: TextView = view.findViewById(R.id.asteroid_detail_text)
-        textView.text = "Asteroid ID: $asteroidId"
+
+        // Observera den valda asteroiden från ViewModel
+        asteroidViewModel.selectedAsteroid.observe(viewLifecycleOwner, Observer { asteroid ->
+            // Uppdatera UI med asteroidens detaljer, använd rätt fält
+            textView.text = "Asteroid: ${asteroid.name}\nDiameter: ${asteroid.diameter}\nHastighet: ${asteroid.velocity}"
+        })
 
         return view
     }

@@ -3,15 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/asteroidListFragment">
 
+
     <!-- Asteroid List Fragment -->
     <fragment
         android:id="@+id/asteroidListFragment"
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidListFragment"
-        tools:layout="@layout/fragment_asteroid_list">
-        <action
-            android:id="@+id/action_to_asteroidDetailFragment"
-            app:destination="@id/asteroidDetailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_asteroid_list"/>
 
     <!-- Asteroid Detail Fragment -->
     <fragment
@@ -24,10 +21,6 @@
     <fragment
         android:id="@+id/asteroidTodayFragment"
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.AsteroidTodayFragment"
-        tools:layout="@layout/fragment_asteroid_today">
-        <action
-            android:id="@+id/action_to_asteroidTodayFragment"
-            app:destination="@id/asteroidTodayFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_asteroid_today"/>
 
 </navigation>
