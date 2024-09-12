@@ -1,5 +1,6 @@
 package mobilt_java23.carl_sundberg.apiintegrationv4.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,14 +29,18 @@ class AsteroidViewModel : ViewModel() {
         }
     }
 
-    // Hämta dagens asteroider
     fun getAsteroidsForToday(apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = NasaApi.retrofitService.getTodayAsteroids(apiKey = apiKey)
+
+                // Logga API-responsen för att debugga
+                Log.d("AsteroidViewModel", "API response received: ${response.near_earth_objects}")
+
                 _asteroids.value = response.near_earth_objects.flatMap { it.value }
             } catch (e: Exception) {
-                // Hantera fel
+                // Logga om ett fel inträffar
+                Log.e("AsteroidViewModel", "Error fetching asteroids: ${e.message}")
             }
         }
     }

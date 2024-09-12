@@ -2,4 +2,5 @@
     <string name="app_name">API integration v.4</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="visa_n_rmaste_asteroid_idag">Visa närmaste asteroid idag</string>
 </resources>

@@ -20,7 +20,7 @@
     <!-- Asteroid Today Fragment -->
     <fragment
         android:id="@+id/asteroidTodayFragment"
-        android:name="mobilt_java23.carl_sundberg.apiintegrationv4.AsteroidTodayFragment"
+        android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidTodayFragment"
         tools:layout="@layout/fragment_asteroid_today"/>
 
 </navigation>

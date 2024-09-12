@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
-import mobilt_java23.carl_sundberg.apiintegrationv4.network.apiKey
 import mobilt_java23.carl_sundberg.apiintegrationv4.viewModel.AsteroidViewModel
-import mobilt_java23.carl_sundberg.apiintegrationv4.recyclerView.AsteroidAdapter
 
 class AsteroidTodayFragment : Fragment() {
 
@@ -25,21 +21,22 @@ class AsteroidTodayFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_asteroid_today, container, false)
 
-        // Hämta RecyclerView och sätt layoutManager och adapter
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_asteroids)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        // TextView för att visa närmaste asteroid idag
+        val closestAsteroidTextView: TextView = view.findViewById(R.id.closestAsteroidTextView)
 
-        // Observera dagens asteroider från ViewModel
+        // Anropa ViewModel-metoden för att hämta dagens asteroider
+        asteroidViewModel.getAsteroidsForToday("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")  // Anropa metoden här
+
+        // Observera ViewModel för att uppdatera UI när dagens asteroider hämtas
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
-            recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
-                // När en asteroid klickas, visa asteroidens detaljer
-                asteroidViewModel.selectAsteroid(asteroid)
-                findNavController().navigate(R.id.asteroidDetailFragment)
+            // Hitta närmaste asteroid baserat på avstånd
+            val closestAsteroid = asteroidList.minByOrNull { it.distanceFromEarth }
+            closestAsteroid?.let {
+                closestAsteroidTextView.text = "Närmaste asteroid: ${it.name}, Avstånd: ${it.distanceFromEarth} km"
+            } ?: run {
+                closestAsteroidTextView.text = "Ingen asteroid hittad för idag."
             }
         })
-
-        // Hämta dagens asteroider
-        asteroidViewModel.getAsteroidsForToday(apiKey)
 
         return view
     }
