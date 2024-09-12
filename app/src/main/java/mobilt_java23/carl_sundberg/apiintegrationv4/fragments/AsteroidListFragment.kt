@@ -1,26 +1,18 @@
 package mobilt_java23.carl_sundberg.apiintegrationv4.fragments
 
-import AsteroidAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
 import mobilt_java23.carl_sundberg.apiintegrationv4.model.Asteroid
-
-/**
- * A fragment representing a list of Items.
- */
-
+import mobilt_java23.carl_sundberg.apiintegrationv4.recyclerView.AsteroidAdapter
+import androidx.navigation.fragment.findNavController
 
 class AsteroidListFragment : Fragment() {
-
-    // ... (andra delar av koden)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,45 +26,21 @@ class AsteroidListFragment : Fragment() {
             Asteroid("2", "Asteroid 2023 CD", "2023-09-12", 85.3, 45000.0, 0.03)
         )
 
-        // Set the adapter with clickListener
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AsteroidAdapter(asteroidList) { asteroid ->
-                    // Skapa en ny instans av AsteroidDetailFragment
-                    val fragment = AsteroidDetailFragment()
+        // Hämta RecyclerView från layouten
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_asteroids)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-                    // Skapa ett Bundle-objekt för att hålla argumenten
-                    val bundle = Bundle()
-                    bundle.putString("asteroidId", asteroid.id)
-
-                    // Sätt argumenten på fragmentet
-                    fragment.arguments = bundle
-
-                    // Navigera till AsteroidDetailFragment
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment) // Ersätt 'fragment_container' med din container-id
-                        .addToBackStack(null)
-                        .commit()
-                }
+        // Sätt adapter för RecyclerView
+        recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
+            // Skapa ett Bundle och lägg till asteroid-id
+            val bundle = Bundle().apply {
+                putString("asteroidId", asteroid.id)
             }
+
+            // Navigera till AsteroidDetailFragment och skicka med Bundle med argument
+            findNavController().navigate(R.id.action_to_asteroidDetailFragment, bundle)
         }
+
         return view
-    }
-
-    // ... (resten av koden)
-
-
-
-    companion object {
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            AsteroidListFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
     }
 }

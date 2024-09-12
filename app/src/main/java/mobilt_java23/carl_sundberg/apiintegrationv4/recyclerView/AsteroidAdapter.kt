@@ -1,3 +1,4 @@
+package mobilt_java23.carl_sundberg.apiintegrationv4.recyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

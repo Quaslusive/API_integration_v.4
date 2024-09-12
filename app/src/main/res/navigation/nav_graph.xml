@@ -1,28 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/asteroidListFragment">
 
+    <!-- Asteroid List Fragment -->
     <fragment
         android:id="@+id/asteroidListFragment"
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidListFragment"
-        android:label="fragment_asteroid_list"
-        tools:layout="@layout/fragment_asteroid_list" >
+        tools:layout="@layout/fragment_asteroid_list">
         <action
-            android:id="@+id/action_asteroidListFragment_to_asteroidDetailsFragment"
-            app:destination="@id/asteroidDetailsFragment"
-            app:popUpToInclusive="false" />
+            android:id="@+id/action_to_asteroidDetailFragment"
+            app:destination="@id/asteroidDetailFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/asteroidDetailsFragment"
-        android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidDetailFragment"
-        android:label="fragment_asteroid_detail"
-        tools:layout="@layout/fragment_asteroid_detail">
 
-        <argument
-            android:name="asteroidId"
-            app:argType="string"/>
-   </fragment>
+    <!-- Asteroid Detail Fragment -->
+    <fragment
+        android:id="@+id/asteroidDetailFragment"
+        android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidDetailFragment"
+        tools:layout="@layout/fragment_asteroid_detail">
+    </fragment>
+
+    <!-- Asteroid Today Fragment -->
+    <fragment
+        android:id="@+id/asteroidTodayFragment"
+        android:name="mobilt_java23.carl_sundberg.apiintegrationv4.AsteroidTodayFragment"
+        tools:layout="@layout/fragment_asteroid_today">
+        <action
+            android:id="@+id/action_to_asteroidTodayFragment"
+            app:destination="@id/asteroidTodayFragment" />
+    </fragment>
+
 </navigation>

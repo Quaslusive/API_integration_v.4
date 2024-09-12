@@ -7,20 +7,23 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Path
 
-const val BASE_URL = "https://api.nasa.gov/neo/rest/v1/V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2 "
+const val apiKey = "V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2"
+const val BASE_URL = "https://api.nasa.gov/neo/rest/v1/"
 
 interface NasaApiService {
     @GET("feed")
     suspend fun getAsteroids(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
-        @Query("api_key") apiKey: String
+        @Query("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2") apiKey: String
+    //    @Query("api_key") apiKey: String
     ): AsteroidResponse
 
     @GET("neo/{id}")
     suspend fun getAsteroidDetails(
         @Path("id") asteroidId: String,
-        @Query("api_key") apiKey: String
+        @Query("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2") apiKey: String
+    //  @Query("api_key") apiKey: String
     ): AsteroidDetails
 }
 

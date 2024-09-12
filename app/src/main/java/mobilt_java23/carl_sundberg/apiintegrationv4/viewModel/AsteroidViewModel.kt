@@ -1,4 +1,4 @@
-package mobilt_java23.carl_sundberg.apiintegrationv4.ViewModel
+package mobilt_java23.carl_sundberg.apiintegrationv4.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
