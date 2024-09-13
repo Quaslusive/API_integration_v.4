@@ -26,7 +26,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="84dp"
         android:text="Närmaste asteroid kommer att visas här"
-        android:textAlignment="gravity"
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.937"

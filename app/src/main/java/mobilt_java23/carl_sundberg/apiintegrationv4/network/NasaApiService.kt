@@ -26,11 +26,11 @@ interface NasaApiService {
         @Query("api_key") apiKey: String = mobilt_java23.carl_sundberg.apiintegrationv4.network.apiKey
     ): AsteroidResponse
 
-    @GET("neo/{id}")
+ /*   @GET("neo/{id}")
     suspend fun getAsteroidDetails(
         @Path("id") asteroidId: String,
         @Query("api_key") apiKey: String = mobilt_java23.carl_sundberg.apiintegrationv4.network.apiKey
-    ): AsteroidDetails
+    ): AsteroidDetails*/
 }
 
 object NasaApi {

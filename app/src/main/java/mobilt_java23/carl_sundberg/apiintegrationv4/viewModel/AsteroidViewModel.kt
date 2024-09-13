@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import mobilt_java23.carl_sundberg.apiintegrationv4.network.Asteroid
 import mobilt_java23.carl_sundberg.apiintegrationv4.network.NasaApi
-import mobilt_java23.carl_sundberg.apiintegrationv4.network.AsteroidDetails
+// import mobilt_java23.carl_sundberg.apiintegrationv4.network.AsteroidDetails
 
 class AsteroidViewModel : ViewModel() {
 
@@ -35,29 +35,27 @@ class AsteroidViewModel : ViewModel() {
 
                 // Extrahera asteroider från JSON och hantera close_approach_data säkert
                 val asteroids = response.near_earth_objects.flatMap { it.value.map { asteroid ->
+                    val closeApproachData = asteroid.close_approach_data.firstOrNull()
+
                     Asteroid(
                         id = asteroid.id,
                         name = asteroid.name,
-                        closeApproachDate = asteroid.closeApproachData?.firstOrNull()?.closeApproachDate ?: "Okänt datum",
-                        estimatedDiameter = asteroid.estimatedDiameter,
-                        velocity = asteroid.velocity,
-                        closeApproachData = asteroid.closeApproachData ?: emptyList()  // Hantera null genom att tilldela en tom lista
+                        absolute_magnitude_h = asteroid.absolute_magnitude_h,
+                        estimated_diameter = asteroid.estimated_diameter,
+                        is_potentially_hazardous_asteroid = asteroid.is_potentially_hazardous_asteroid,
+                        close_approach_data = asteroid.close_approach_data
                     )
                 }}
 
+                // Uppdatera LiveData med den parsed data
                 _asteroids.value = asteroids
-
-
-                val closestAsteroid = asteroids.minByOrNull {
-                    it.closeApproachData.firstOrNull()?.missDistance?.kilometers?.toDouble() ?: Double.MAX_VALUE
-                }
-                Log.d("AsteroidViewModel", "Närmaste asteroid: ${closestAsteroid?.name}, Avstånd: ${closestAsteroid?.closeApproachData?.firstOrNull()?.missDistance?.kilometers} km")
 
             } catch (e: Exception) {
                 Log.e("AsteroidViewModel", "Error fetching asteroids: ${e.message}")
             }
         }
     }
+
 
     fun selectAsteroid(asteroid: Asteroid) {
         _selectedAsteroid.value = asteroid

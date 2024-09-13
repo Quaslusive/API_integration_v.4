@@ -29,7 +29,7 @@ class AsteroidDetailFragment : Fragment() {
 
         asteroidViewModel.selectedAsteroid.observe(viewLifecycleOwner, Observer { asteroid ->
 
-            textView.text = "Asteroid: ${asteroid.name}\nHastighet: ${asteroid.velocity}"
+       //     textView.text = "Asteroid: ${asteroid.name}\nHastighet: ${asteroid.velocity}"
         })
 
         return view

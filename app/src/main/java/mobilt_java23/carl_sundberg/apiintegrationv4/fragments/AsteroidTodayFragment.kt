@@ -26,22 +26,24 @@ class AsteroidTodayFragment : Fragment() {
         val closestAsteroidTextView: TextView = view.findViewById(R.id.closestAsteroidTextView)
 
 
-        asteroidViewModel.getAsteroidsForToday("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")  // Anropa metoden här
+        asteroidViewModel.getAsteroidsForToday("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")
 
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
-
-            val closestAsteroid = asteroidList.minByOrNull {
-                it.closeApproachData.firstOrNull()?.missDistance?.kilometers?.toDouble() ?: Double.MAX_VALUE
+            // Hitta närmaste asteroid baserat på miss_distance_kilometers från close_approach_data
+            val closestAsteroid = asteroidList.minByOrNull { asteroid ->
+                asteroid.close_approach_data.firstOrNull()?.miss_distance?.kilometers?.toDouble() ?: Double.MAX_VALUE
             }
 
-
+            // Visa asteroidens namn, avstånd och hastighet
             closestAsteroid?.let {
-                val distance = it.closeApproachData.firstOrNull()?.missDistance?.kilometers ?: "Okänt avstånd"
-                closestAsteroidTextView.text = "Närmaste asteroid: ${it.name}, Avstånd: $distance km"
+                val missDistance = it.close_approach_data.firstOrNull()?.miss_distance?.kilometers ?: "Okänt avstånd"
+                val velocity = it.close_approach_data.firstOrNull()?.relative_velocity?.kilometers_per_second ?: "Okänd hastighet"
+                closestAsteroidTextView.text = "Närmaste asteroid: ${it.name}, Avstånd: $missDistance km, Hastighet: $velocity km/s"
             } ?: run {
                 closestAsteroidTextView.text = "Ingen asteroid hittad för idag."
             }
         })
+
 
         return view
     }

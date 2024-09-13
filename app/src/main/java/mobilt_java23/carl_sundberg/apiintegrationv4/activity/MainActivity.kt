@@ -26,16 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
 
-        // Hämta knapparna och sätt OnClickListener
 //val showAsteroidsButton: Button = findViewById(R.id.button_show_asteroids)
   //      val searchByIdButton: Button = findViewById(R.id.button_search_by_id)
         val todayAsteroidButton: Button = findViewById(R.id.todayAsteroidButton)
 
-    /*   // Lägg till OnClickListener för knappar
-        showAsteroidsButton.setOnClickListener {
-            Log.d("carl", "TodayAstro Klicked2")
-            navController.navigate(R.id.asteroidTodayFragment)
-      }*/
 
         todayAsteroidButton.setOnClickListener {
 

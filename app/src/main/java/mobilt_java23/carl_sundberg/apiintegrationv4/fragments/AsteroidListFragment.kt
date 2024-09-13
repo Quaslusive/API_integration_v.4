@@ -31,7 +31,6 @@ class AsteroidListFragment : Fragment() {
 
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
             recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
-                // När en asteroid klickas, välj den i ViewModel
                 asteroidViewModel.selectAsteroid(asteroid)
 
 
