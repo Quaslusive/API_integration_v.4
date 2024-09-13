@@ -1,11 +1,12 @@
 package mobilt_java23.carl_sundberg.apiintegrationv4.fragments
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
@@ -14,11 +15,7 @@ import mobilt_java23.carl_sundberg.apiintegrationv4.viewModel.AsteroidViewModel
 
 class AsteroidBrowseFragment : Fragment() {
 
-    private lateinit var asteroidViewModel: AsteroidViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AsteroidAdapter
-
-    // In AsteroidBrowseFragment.kt
+    private val asteroidViewModel: AsteroidViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,19 +23,21 @@ class AsteroidBrowseFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_asteroid_browse, container, false)
 
-        // Correctly initialize ViewModel
-        asteroidViewModel = ViewModelProvider(this).get(AsteroidViewModel::class.java)
+        // Setup RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_browse)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Observe LiveData from the ViewModel
+        // Observe the ViewModel's neoList LiveData
         asteroidViewModel.neoList.observe(viewLifecycleOwner, Observer { asteroidList ->
-            // Update your RecyclerView or UI with the asteroidList here
-            // Example: recyclerView.adapter = AsteroidAdapter(asteroidList)
+            recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
+                // Handle click on asteroid item
+                // For example: navigate to detail fragment or show a toast
+            }
         })
 
-        // Fetch the NEOs by calling the method in the ViewModel
-        asteroidViewModel.browseNearEarthObjects("YOUR_API_KEY")
+        // Call the ViewModel to fetch data
+      //  asteroidViewModel.browseNearEarthObjects("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")
 
         return view
     }
-
 }

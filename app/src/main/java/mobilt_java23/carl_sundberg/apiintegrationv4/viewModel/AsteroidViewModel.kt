@@ -23,20 +23,38 @@ class AsteroidViewModel : ViewModel() {
     private val _neoList = MutableLiveData<List<Asteroid>>()
     val neoList: LiveData<List<Asteroid>> get() = _neoList
 
-    // Fetch a list of near-Earth objects from the browse endpoint
+   /* // Fetch a list of near-Earth objects from the browse endpoint
     fun browseNearEarthObjects(apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = NasaApi.retrofitService.browseNearEarthObjects(apiKey)
+
                 // Flatten the map into a single list of asteroids
-                val asteroids = response.near_earth_objects.flatMap { entry ->
-                    entry.value
-                }
-                // Assign the flattened list to _neoList
+                val asteroids = response.near_earth_objects.flatMap { it.value }
+
+                // Update the LiveData
                 _neoList.value = asteroids
+
             } catch (e: Exception) {
                 Log.e("AsteroidViewModel", "Error browsing NEOs: ${e.message}")
                 _neoList.value = emptyList() // Handle error by returning an empty list
+            }
+        }
+    }*/
+
+    fun getDateAsteroids(startDate: String, endDate: String, apiKey: String) {
+        viewModelScope.launch {
+            try {
+                val response = NasaApi.retrofitService.getDateAsteroids(startDate, endDate, apiKey)
+
+                // Flatten the map of near_earth_objects into a list of asteroids
+                val asteroids = response.near_earth_objects.flatMap { it.value }
+
+                // Update the LiveData with the fetched asteroids
+                _asteroids.value = asteroids
+            } catch (e: Exception) {
+                // Handle any errors, such as network issues or invalid API responses
+                _asteroids.value = emptyList() // Set to an empty list on error
             }
         }
     }
@@ -72,6 +90,7 @@ class AsteroidViewModel : ViewModel() {
             }
         }
     }
+
 
     // Select an asteroid to display its details
     fun selectAsteroid(asteroid: Asteroid) {

@@ -24,53 +24,40 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
-    <TextView
-        android:id="@+id/title_asteroids_list"
-        android:layout_width="242dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="88dp"
-        android:text="Asteroider nära jorden"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/todayAsteroidButton"
-        android:layout_width="239dp"
-        android:layout_height="68dp"
-        android:layout_marginBottom="216dp"
-        android:text="@string/visa_n_rmaste_asteroid_idag"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
     <!-- FragmentContainer for Navigation Component -->
-
-    <Button
-        android:id="@+id/button_browse_asteroids"
-        android:layout_width="235dp"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="340dp"
-        android:layout_marginBottom="59dp"
-        android:text="Browse Asteroids"
-        app:layout_constraintBottom_toTopOf="@+id/todayAsteroidButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:navGraph="@navigation/nav_graph"
-        app:defaultNavHost="true" />
+        app:navGraph="@navigation/nav_graph" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="409dp"
+        android:layout_height="205dp"
+        android:layout_marginBottom="3dp"
+        app:constraint_referenced_ids="datePickerBtn,todayAsteroidButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/datePickerBtn"
+        android:layout_width="221dp"
+        android:layout_height="89dp"
+        android:text="Date Selection"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="448dp" />
+
+    <Button
+        android:id="@+id/todayAsteroidButton"
+        android:layout_width="205dp"
+        android:layout_height="78dp"
+        android:text="@string/visa_n_rmaste_asteroid_idag" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

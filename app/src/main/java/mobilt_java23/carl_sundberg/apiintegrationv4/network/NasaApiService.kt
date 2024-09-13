@@ -13,7 +13,7 @@ const val BASE_URL = "https://api.nasa.gov/neo/rest/v1/"
 interface NasaApiService {
 
     @GET("feed")
-    suspend fun getAsteroids(
+    suspend fun getDateAsteroids(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
         @Query("api_key") apiKey: String = mobilt_java23.carl_sundberg.apiintegrationv4.network.apiKey
@@ -27,7 +27,7 @@ interface NasaApiService {
     ): AsteroidResponse
 
     @GET("neo/browse")
-    suspend fun browseNearEarthObjects(
+    suspend fun getBrowseNearEarthObjects(
         @Query("api_key") apiKey: String
     ): AsteroidResponse
 

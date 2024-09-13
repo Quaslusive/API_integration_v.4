@@ -1,19 +1,27 @@
 package mobilt_java23.carl_sundberg.apiintegrationv4.fragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.DatePicker
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
-import java.time.LocalDate
-
+import mobilt_java23.carl_sundberg.apiintegrationv4.recyclerView.AsteroidAdapter
+import mobilt_java23.carl_sundberg.apiintegrationv4.viewModel.AsteroidViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DateSelectionFragment : Fragment() {
 
-    private var selectedDate: LocalDate? = null
+    private val asteroidViewModel: AsteroidViewModel by activityViewModels()
+    private var startDate: String = ""
+    private var endDate: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,27 +29,59 @@ class DateSelectionFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_date_selection, container, false)
 
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_asteroids)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        val datePicker = view.findViewById<DatePicker>(R.id.datePicker)
+        val startDateButton: Button = view.findViewById(R.id.startDateButton)
+        val endDateButton: Button = view.findViewById(R.id.endDateButton)
+        val fetchAsteroidsButton: Button = view.findViewById(R.id.fetchAsteroidsButton)
 
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-        var year = 0;
-        var month = 0
-        var day = 0
-        datePicker.init(year, month, day) { _, year, month, day ->
-
-            selectedDate = LocalDate.of(year, month + 1, day)
+        // Handle start date selection
+        startDateButton.setOnClickListener {
+            DatePickerDialog(
+                requireContext(),
+                { _, year, month, dayOfMonth ->
+                    calendar.set(year, month, dayOfMonth)
+                    startDate = dateFormat.format(calendar.time)
+                    startDateButton.text = "Startdatum: $startDate"
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
+        // Handle end date selection
+        endDateButton.setOnClickListener {
+            DatePickerDialog(
+                requireContext(),
+                { _, year, month, dayOfMonth ->
+                    calendar.set(year, month, dayOfMonth)
+                    endDate = dateFormat.format(calendar.time)
+                    endDateButton.text = "Slutdatum: $endDate"
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
 
-        val confirmButton = view.findViewById<Button>(R.id.confirm_button)
-        confirmButton.setOnClickListener {
-
-            selectedDate?.let {
-                val result = Bundle().apply { putString("selectedDate", it.toString()) }
-                parentFragmentManager.setFragmentResult("dateSelection", result)
+        // Handle fetching asteroids based on selected dates
+        fetchAsteroidsButton.setOnClickListener {
+            if (startDate.isNotEmpty() && endDate.isNotEmpty()) {
+                asteroidViewModel.getDateAsteroids(startDate, endDate, "YOUR_API_KEY")
             }
         }
+
+        // Observe the asteroids LiveData and update the RecyclerView
+        asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
+            recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
+                // Handle asteroid item clicks (optional)
+            }
+        })
 
         return view
     }
