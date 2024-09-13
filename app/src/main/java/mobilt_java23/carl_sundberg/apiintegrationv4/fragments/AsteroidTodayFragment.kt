@@ -22,22 +22,22 @@ class AsteroidTodayFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_asteroid_today, container, false)
 
-        // TextView för att visa närmaste asteroid idag
+
         val closestAsteroidTextView: TextView = view.findViewById(R.id.closestAsteroidTextView)
 
-        // Anropa ViewModel-metoden för att hämta dagens asteroider
+
         asteroidViewModel.getAsteroidsForToday("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")  // Anropa metoden här
 
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
-            // Hitta närmaste asteroid baserat på avstånd
+
             val closestAsteroid = asteroidList.minByOrNull {
                 it.closeApproachData.firstOrNull()?.missDistance?.kilometers?.toDouble() ?: Double.MAX_VALUE
             }
 
-            // Visa asteroidens namn och avstånd
+
             closestAsteroid?.let {
                 val distance = it.closeApproachData.firstOrNull()?.missDistance?.kilometers ?: "Okänt avstånd"
-                closestAsteroidTextView.text = "Closest asteroid: ${it.name}, Distance: $distance km"
+                closestAsteroidTextView.text = "Närmaste asteroid: ${it.name}, Avstånd: $distance km"
             } ?: run {
                 closestAsteroidTextView.text = "Ingen asteroid hittad för idag."
             }

@@ -18,17 +18,15 @@ class AsteroidViewModel : ViewModel() {
     private val _selectedAsteroid = MutableLiveData<Asteroid>()
     val selectedAsteroid: LiveData<Asteroid> get() = _selectedAsteroid
 
-    // Hämta asteroider för ett specifikt tidsintervall
-    fun getAsteroids(startDate: String, endDate: String, apiKey: String) {
+/*    fun getAsteroids(startDate: String, endDate: String, apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = NasaApi.retrofitService.getAsteroids(startDate, endDate, apiKey)
                 _asteroids.value = response.near_earth_objects.flatMap { it.value }
             } catch (e: Exception) {
-                // Hantera fel
             }
         }
-    }
+    }*/
 
     fun getAsteroidsForToday(apiKey: String) {
         viewModelScope.launch {
@@ -47,10 +45,9 @@ class AsteroidViewModel : ViewModel() {
                     )
                 }}
 
-                // Uppdatera LiveData med den parsed data
                 _asteroids.value = asteroids
 
-                // Logga avståndet för den närmaste asteroiden
+
                 val closestAsteroid = asteroids.minByOrNull {
                     it.closeApproachData.firstOrNull()?.missDistance?.kilometers?.toDouble() ?: Double.MAX_VALUE
                 }
@@ -61,12 +58,6 @@ class AsteroidViewModel : ViewModel() {
             }
         }
     }
-
-
-
-
-
-
 
     fun selectAsteroid(asteroid: Asteroid) {
         _selectedAsteroid.value = asteroid

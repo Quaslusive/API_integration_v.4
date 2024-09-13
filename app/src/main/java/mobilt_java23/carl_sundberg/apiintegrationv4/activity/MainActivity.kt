@@ -18,15 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Hämta Toolbar från layouten och sätt som ActionBar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)  // Sätt Toolbar som ActionBar först
+        setSupportActionBar(toolbar)
 
-        // Hämta NavHostFragment och NavController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Sätt upp ActionBar med NavController för att hantera bakåtknappen korrekt
         setupActionBarWithNavController(navController)
 
         // Hämta knapparna och sätt OnClickListener
@@ -41,13 +38,12 @@ class MainActivity : AppCompatActivity() {
       }*/
 
         todayAsteroidButton.setOnClickListener {
-            // Navigera till AsteroidTodayFragment
+
             Log.d("carl", "TodayAstro Klicked")
             navController.navigate(R.id.asteroidTodayFragment)
         }
     }
 
-    // Hantera bakåtknappen för ActionBar
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

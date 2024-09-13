@@ -21,22 +21,22 @@ class DateSelectionFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_date_selection, container, false)
 
-        // DatePicker-komponent för att välja ett datum
+
         val datePicker = view.findViewById<DatePicker>(R.id.datePicker)
 
-        // Sätta upp en lyssnare på DatePicker
-        var year = 0
+
+        var year = 0;
         var month = 0
         var day = 0
         datePicker.init(year, month, day) { _, year, month, day ->
-            // Spara valt datum som LocalDate
+
             selectedDate = LocalDate.of(year, month + 1, day)
         }
 
-        // Hantera knapp för att bekräfta datumval
+
         val confirmButton = view.findViewById<Button>(R.id.confirm_button)
         confirmButton.setOnClickListener {
-            // Skicka tillbaka valt datum
+
             selectedDate?.let {
                 val result = Bundle().apply { putString("selectedDate", it.toString()) }
                 parentFragmentManager.setFragmentResult("dateSelection", result)

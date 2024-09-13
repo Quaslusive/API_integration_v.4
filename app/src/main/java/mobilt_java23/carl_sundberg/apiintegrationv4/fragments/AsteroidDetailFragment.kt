@@ -23,12 +23,12 @@ class AsteroidDetailFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_asteroid_detail, container, false)
 
-        // Hämta TextView för att visa asteroidens detaljer
+
         val textView: TextView = view.findViewById(R.id.asteroid_detail_text)
 
-        // Observera den valda asteroiden från ViewModel
+
         asteroidViewModel.selectedAsteroid.observe(viewLifecycleOwner, Observer { asteroid ->
-            // Uppdatera UI med asteroidens detaljer, använd rätt fält
+
             textView.text = "Asteroid: ${asteroid.name}\nHastighet: ${asteroid.velocity}"
         })
 

@@ -8,6 +8,19 @@
     tools:context=".activity.MainActivity">
 
     <!-- AppBarLayout med Toolbar -->
+
+    <TextView
+        android:id="@+id/title_asteroids_list"
+        android:layout_width="242dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="72dp"
+        android:text="Asteroider nära jorden"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -24,27 +37,26 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- ImageView -->
+
+
+    <!-- FragmentContainer for Navigation Component -->
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="184dp"
         android:layout_height="146dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:src="@drawable/pngwing"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.497" />
-
-
-
-
-    <!-- FragmentContainer for Navigation Component -->
+        app:layout_constraintTop_toBottomOf="@+id/title_asteroids_list" />
 
     <Button
         android:id="@+id/todayAsteroidButton"
         android:layout_width="239dp"
         android:layout_height="68dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginBottom="216dp"
         android:text="@string/visa_n_rmaste_asteroid_idag"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
