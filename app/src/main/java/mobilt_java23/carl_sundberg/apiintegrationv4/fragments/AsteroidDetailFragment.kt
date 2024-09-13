@@ -29,7 +29,7 @@ class AsteroidDetailFragment : Fragment() {
         // Observera den valda asteroiden från ViewModel
         asteroidViewModel.selectedAsteroid.observe(viewLifecycleOwner, Observer { asteroid ->
             // Uppdatera UI med asteroidens detaljer, använd rätt fält
-            textView.text = "Asteroid: ${asteroid.name}\nDiameter: ${asteroid.diameter}\nHastighet: ${asteroid.velocity}"
+            textView.text = "Asteroid: ${asteroid.name}\nHastighet: ${asteroid.velocity}"
         })
 
         return view

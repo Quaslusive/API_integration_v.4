@@ -1,6 +1,7 @@
 package mobilt_java23.carl_sundberg.apiintegrationv4.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,12 +28,16 @@ class AsteroidTodayFragment : Fragment() {
         // Anropa ViewModel-metoden för att hämta dagens asteroider
         asteroidViewModel.getAsteroidsForToday("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")  // Anropa metoden här
 
-        // Observera ViewModel för att uppdatera UI när dagens asteroider hämtas
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
             // Hitta närmaste asteroid baserat på avstånd
-            val closestAsteroid = asteroidList.minByOrNull { it.distanceFromEarth }
+            val closestAsteroid = asteroidList.minByOrNull {
+                it.closeApproachData.firstOrNull()?.missDistance?.kilometers?.toDouble() ?: Double.MAX_VALUE
+            }
+
+            // Visa asteroidens namn och avstånd
             closestAsteroid?.let {
-                closestAsteroidTextView.text = "Närmaste asteroid: ${it.name}, Avstånd: ${it.distanceFromEarth} km"
+                val distance = it.closeApproachData.firstOrNull()?.missDistance?.kilometers ?: "Okänt avstånd"
+                closestAsteroidTextView.text = "Closest asteroid: ${it.name}, Distance: $distance km"
             } ?: run {
                 closestAsteroidTextView.text = "Ingen asteroid hittad för idag."
             }

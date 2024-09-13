@@ -8,9 +8,17 @@ data class Asteroid(
     val id: String,
     val name: String,
     val closeApproachDate: String,
+    val estimatedDiameter: Double,
+    val velocity: Double,
+    val closeApproachData: List<CloseApproachData>
+
+ /*   val id: String,
+    val name: String,
+    val closeApproachDate: String,
     val diameter: Double,   // Se till att egenskapen heter "diameter" eller motsvarande
     val velocity: Double,
-    val distanceFromEarth: Double
+    val distanceFromEarth: Double,
+    val closeApproachData: List<CloseApproachData>*/
 //    val id: String,
 //    val name: String,
 //    val closeApproachDate: String,
@@ -34,9 +42,8 @@ data class Kilometers(
 )
 
 data class CloseApproachData(
-    val close_approach_date: String,
-    val relative_velocity: Velocity,
-    val miss_distance: MissDistance
+    val closeApproachDate: String,
+    val missDistance: MissDistance
 )
 
 data class Velocity(
