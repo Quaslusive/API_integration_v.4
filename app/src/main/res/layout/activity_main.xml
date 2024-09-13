@@ -23,12 +23,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Titel TextView -->
 
-    <!-- ImageView -->
-    >
-
-    <!-- Button -->
 
     <TextView
         android:id="@+id/title_asteroids_list"
@@ -52,7 +47,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <!-- FragmentContainer for Navigation Component -->
+
+    <Button
+        android:id="@+id/button_browse_asteroids"
+        android:layout_width="235dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="340dp"
+        android:layout_marginBottom="59dp"
+        android:text="Browse Asteroids"
+        app:layout_constraintBottom_toTopOf="@+id/todayAsteroidButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"

@@ -24,22 +24,17 @@ class AsteroidListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_asteroid_list, container, false)
 
-
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_asteroids)
         recyclerView.layoutManager = LinearLayoutManager(context)
-
 
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
             recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
                 asteroidViewModel.selectAsteroid(asteroid)
-
-
                 findNavController().navigate(R.id.asteroidDetailFragment)
             }
         })
 
-
-     //   asteroidViewModel.getAsteroids("2023-09-01", "2023-09-30", "V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")
+        // asteroidViewModel.getAsteroids(...) call can be uncommented as needed
 
         return view
     }

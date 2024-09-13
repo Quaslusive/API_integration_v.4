@@ -29,7 +29,13 @@ class MainActivity : AppCompatActivity() {
 //val showAsteroidsButton: Button = findViewById(R.id.button_show_asteroids)
   //      val searchByIdButton: Button = findViewById(R.id.button_search_by_id)
         val todayAsteroidButton: Button = findViewById(R.id.todayAsteroidButton)
+        val browseBtn: Button = findViewById(R.id.button_browse_asteroids)
 
+        browseBtn.setOnClickListener {
+            Log.d("carl", "browseAstro Klicked why so slow?")
+            navController.navigate(R.id.asteroidBrowseFragment)
+
+        }
 
         todayAsteroidButton.setOnClickListener {
 

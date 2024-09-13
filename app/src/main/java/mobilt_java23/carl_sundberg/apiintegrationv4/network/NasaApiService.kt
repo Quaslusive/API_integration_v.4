@@ -26,6 +26,11 @@ interface NasaApiService {
         @Query("api_key") apiKey: String = mobilt_java23.carl_sundberg.apiintegrationv4.network.apiKey
     ): AsteroidResponse
 
+    @GET("neo/browse")
+    suspend fun browseNearEarthObjects(
+        @Query("api_key") apiKey: String
+    ): AsteroidResponse
+
  /*   @GET("neo/{id}")
     suspend fun getAsteroidDetails(
         @Path("id") asteroidId: String,

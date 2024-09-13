@@ -27,5 +27,10 @@
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidOrbitFragment"
         android:label="fragment_asteroid_orbit"
         tools:layout="@layout/fragment_asteroid_orbit" />
+    <fragment
+        android:id="@+id/asteroidBrowseFragment"
+        android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidBrowseFragment"
+        android:label="fragment_asteroid_browse"
+        tools:layout="@layout/fragment_asteroid_browse" />
 
 </navigation>
