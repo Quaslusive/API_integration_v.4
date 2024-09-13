@@ -41,6 +41,7 @@ class AsteroidViewModel : ViewModel() {
                         id = asteroid.id,
                         name = asteroid.name,
                         absolute_magnitude_h = asteroid.absolute_magnitude_h,
+                        nasa_jpl_url= asteroid.nasa_jpl_url + "&view=VOP",
                         estimated_diameter = asteroid.estimated_diameter,
                         is_potentially_hazardous_asteroid = asteroid.is_potentially_hazardous_asteroid,
                         close_approach_data = asteroid.close_approach_data

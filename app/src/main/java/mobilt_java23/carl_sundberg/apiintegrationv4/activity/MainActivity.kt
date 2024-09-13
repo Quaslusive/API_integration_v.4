@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         todayAsteroidButton.setOnClickListener {
 
-            Log.d("carl", "TodayAstro Klicked")
+            Log.d("carl", "TodayAstro Klicked why so slow?")
             navController.navigate(R.id.asteroidTodayFragment)
         }
     }

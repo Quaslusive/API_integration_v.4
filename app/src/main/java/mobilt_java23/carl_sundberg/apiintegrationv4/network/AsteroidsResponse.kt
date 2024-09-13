@@ -8,6 +8,7 @@ data class Asteroid(
     val id: String,
     val name: String,
     val absolute_magnitude_h: Double,
+    val nasa_jpl_url: String,
     val estimated_diameter: EstimatedDiameter,
     val is_potentially_hazardous_asteroid: Boolean,
     val close_approach_data: List<CloseApproachData>
