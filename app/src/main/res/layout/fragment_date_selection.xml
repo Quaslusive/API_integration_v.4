@@ -12,45 +12,51 @@
 
     <!-- Fetch Asteroids Button -->
 
+
+    <!-- Flow to arrange buttons horizontally -->
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/buttonFlow"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="startDateButton,endDateButton, fetchAsteroidsButton"
+        app:flow_horizontalBias="0.5"
+        app:flow_horizontalStyle="spread"
+        app:flow_wrapMode="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/startDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
         android:text="Välj Startdatum"
-        app:layout_constraintEnd_toStartOf="@+id/endDateButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view_asteroids" />
+        tools:layout_editor_absoluteY="343dp" />
 
     <Button
         android:id="@+id/fetchAsteroidsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:text="Hämta Asteroider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startDateButton" />
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="427dp" />
 
     <Button
         android:id="@+id/endDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
         android:text="Välj Slutdatum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/startDateButton"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view_asteroids" />
+        tools:layout_editor_absoluteY="343dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_asteroids"
-        android:layout_width="384dp"
-        android:layout_height="275dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="409dp"
+        android:layout_height="681dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

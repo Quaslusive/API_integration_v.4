@@ -3,4 +3,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="visa_n_rmaste_asteroid_idag">Visa närmaste asteroid idag</string>
+    <string name="visa_specifik_datum">Visa Specifik Datum</string>
+    <string name="n_rkomst_datum">Närkomst Datum</string>
+    <string name="miss_distans">Miss Distans:</string>
+    <string name="relativ_fart">Relativ Fart:</string>
+    <string name="est_diameter">.Est Diameter:</string>
+    <string name="absolut_magnitud">Absolut magnitud:</string>
+    <string name="avst_nd">Avstånd:</string>
+    <string name="asteroid_namn">Asteroid Namn</string>
+    <string name="orbit_view">Orbit View</string>
+    <string name="miss_distans_fr_n_luna">Miss Distans från luna</string>
+    <string name="is_potentially_hazardous_asteroid">is Potentially Hazardous Asteroid</string>
+    <string name="asteroid_farlig">asteroid_farlig</string>
 </resources>

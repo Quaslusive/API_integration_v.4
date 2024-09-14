@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
@@ -72,14 +73,17 @@ class DateSelectionFragment : Fragment() {
         // Handle fetching asteroids based on selected dates
         fetchAsteroidsButton.setOnClickListener {
             if (startDate.isNotEmpty() && endDate.isNotEmpty()) {
-                asteroidViewModel.getDateAsteroids(startDate, endDate, "YOUR_API_KEY")
+                asteroidViewModel.getDateAsteroids(startDate, endDate, "V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")
             }
         }
 
-        // Observe the asteroids LiveData and update the RecyclerView
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
-            recyclerView.adapter = AsteroidAdapter(asteroidList) { asteroid ->
-                // Handle asteroid item clicks (optional)
+            recyclerView.adapter = AsteroidAdapter(asteroidList) { jplUrl ->
+                // Handle navigation to AsteroidOrbitFragment with the JPL URL
+                val bundle = Bundle().apply {
+                    putString("nasa_jpl_url", jplUrl)
+                }
+                findNavController().navigate(R.id.asteroidOrbitFragment, bundle)
             }
         })
 

@@ -9,7 +9,7 @@
         android:id="@+id/asteroid_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Asteroid Namn"
+        android:text="@string/asteroid_namn"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -17,20 +17,60 @@
         android:id="@+id/asteroid_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Avstånd: "
+        android:elegantTextHeight="true"
+        android:text="@string/avst_nd"
+        android:textAlignment="gravity"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/absolute_magnitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:text="@string/absolut_magnitud"
+        android:textAlignment="gravity"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/estimated_diameter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:text="@string/est_diameter"
+        android:textAlignment="gravity"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/relativeVelocity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:text="@string/relativ_fart"
+        android:textAlignment="gravity"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/isPotentiallyHazardousAsteroid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:text="@string/asteroid_farlig"
+        android:textAlignment="gravity"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/asteroid_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Approach Date"
+        android:elegantTextHeight="true"
+        android:text="@string/n_rkomst_datum"
+        android:textAlignment="gravity"
         android:textSize="14sp" />
 
     <Button
         android:id="@+id/orbitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Visa Omloppsbana" />
+        android:text="@string/orbit_view" />
 
 </LinearLayout>
