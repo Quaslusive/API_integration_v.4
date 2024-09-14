@@ -3,27 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/asteroidOrbitFragment">
 
-    <!-- Asteroid Today Fragment -->
     <fragment
         android:id="@+id/asteroidTodayFragment"
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidTodayFragment"
         tools:layout="@layout/fragment_asteroid_today"/>
 
-    <!-- Asteroid Orbit Fragment -->
     <fragment
         android:id="@+id/asteroidOrbitFragment"
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.AsteroidOrbitFragment"
         android:label="fragment_asteroid_orbit"
         tools:layout="@layout/fragment_asteroid_orbit" />
 
-    <!-- Date Selection Fragment -->
     <fragment
         android:id="@+id/dateSelectionFragment"
         android:name="mobilt_java23.carl_sundberg.apiintegrationv4.fragments.DateSelectionFragment"
         android:label="DateSelectionFragment"
         tools:layout="@layout/fragment_date_selection" />
 
-    <!-- Navigation Actions -->
     <action
         android:id="@+id/action_asteroidTodayFragment_to_asteroidOrbitFragment"
         app:destination="@id/asteroidOrbitFragment" />

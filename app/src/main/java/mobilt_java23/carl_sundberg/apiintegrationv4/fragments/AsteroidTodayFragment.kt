@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import mobilt_java23.carl_sundberg.apiintegrationv4.BuildConfig
 import mobilt_java23.carl_sundberg.apiintegrationv4.R
 import mobilt_java23.carl_sundberg.apiintegrationv4.recyclerView.AsteroidAdapter
 import mobilt_java23.carl_sundberg.apiintegrationv4.viewModel.AsteroidViewModel
@@ -17,7 +18,7 @@ import mobilt_java23.carl_sundberg.apiintegrationv4.viewModel.AsteroidViewModel
 class AsteroidTodayFragment : Fragment() {
 
     private val asteroidViewModel: AsteroidViewModel by activityViewModels()
-
+    private val apiKey = BuildConfig.API_KEY
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +29,7 @@ class AsteroidTodayFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Fetch today's asteroids from ViewModel
-        asteroidViewModel.getAsteroidsForToday("V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2")
+        asteroidViewModel.getAsteroidsForToday(apiKey)
 
         // Observe the list of asteroids and set up the RecyclerView
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->

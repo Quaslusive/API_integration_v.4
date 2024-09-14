@@ -2,61 +2,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="104dp"
-    tools:layout_editor_absoluteY="63dp">
+    android:layout_height="match_parent">
 
-    <!-- Start Date Button -->
-
-    <!-- End Date Button -->
-
-    <!-- Fetch Asteroids Button -->
-
-
-    <!-- Flow to arrange buttons horizontally -->
+    <!-- Flow to arrange buttons vertically -->
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/buttonFlow"
-        android:layout_width="409dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="startDateButton,endDateButton, fetchAsteroidsButton"
-        app:flow_horizontalBias="0.5"
-        app:flow_horizontalStyle="spread"
+        app:constraint_referenced_ids="startDateButton,endDateButton,fetchAsteroidsButton"
+        app:flow_verticalBias="0.8"
+        app:flow_verticalStyle="spread"
         app:flow_wrapMode="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Start Date Button -->
     <Button
         android:id="@+id/startDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Välj Startdatum"
-        tools:layout_editor_absoluteY="343dp" />
+        android:layout_margin="8dp"
+        android:text="Startdatum" />
 
-    <Button
-        android:id="@+id/fetchAsteroidsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hämta Asteroider"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="427dp" />
-
+    <!-- End Date Button -->
     <Button
         android:id="@+id/endDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Välj Slutdatum"
-        tools:layout_editor_absoluteY="343dp" />
+        android:layout_margin="8dp"
+        android:text="Slutdatum" />
 
+    <!-- Fetch Asteroids Button -->
+    <Button
+        android:id="@+id/fetchAsteroidsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Hämta Data" />
+
+    <!-- RecyclerView for displaying asteroids -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_asteroids"
+        android:layout_width="404dp"
+        android:layout_height="636dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonFlow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flow" />
+
+    <!-- Flow for aligning start and end date TextViews -->
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
         android:layout_width="409dp"
-        android:layout_height="681dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_height="45dp"
+        app:constraint_referenced_ids="startDateTv,endDateTV"
+        app:flow_horizontalBias="0.5"
+        app:flow_horizontalStyle="spread"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Start Date TextView -->
+    <TextView
+        android:id="@+id/startDateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- End Date TextView -->
+    <TextView
+        android:id="@+id/endDateTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
