@@ -32,7 +32,7 @@ class AsteroidTodayFragment : Fragment() {
 
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
             recyclerView.adapter = AsteroidAdapter(asteroidList) { jplUrl ->
-                // Handle navigation to AsteroidOrbitFragment with the JPL URL
+                //  navigation till AsteroidOrbitFragment med JPL URL
                 val bundle = Bundle().apply {
                     putString("nasa_jpl_url", jplUrl)
                 }

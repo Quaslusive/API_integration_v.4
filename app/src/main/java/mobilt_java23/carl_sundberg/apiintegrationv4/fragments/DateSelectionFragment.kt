@@ -45,7 +45,6 @@ class DateSelectionFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-        // Handle start date selection
         startDateButton.setOnClickListener {
             DatePickerDialog(
                 requireContext(),
@@ -60,7 +59,6 @@ class DateSelectionFragment : Fragment() {
             ).show()
         }
 
-        // Handle end date selection
         endDateButton.setOnClickListener {
             DatePickerDialog(
                 requireContext(),
@@ -84,7 +82,7 @@ class DateSelectionFragment : Fragment() {
 
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
             recyclerView.adapter = AsteroidAdapter(asteroidList) { jplUrl ->
-                // Handle navigation to AsteroidOrbitFragment with the JPL URL
+                //  navigation till AsteroidOrbitFragment med JPL URL
                 val bundle = Bundle().apply {
                     putString("nasa_jpl_url", jplUrl)
                 }

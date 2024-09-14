@@ -52,7 +52,7 @@ class AsteroidAdapter(
                 "Farlig: Nej"
             }
 
-            // Handle orbitButton click for each asteroid
+            //  orbitButton för varje asteroid
             val jplUrl = asteroid.nasa_jpl_url
             orbitButton.setOnClickListener {
                 onOrbitButtonClick(jplUrl)
