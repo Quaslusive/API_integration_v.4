@@ -2,9 +2,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragments.DateSelectionFragment">
 
-    <!-- Flow to arrange buttons vertically -->
+
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/buttonFlow"
         android:layout_width="wrap_content"
@@ -17,31 +18,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Start Date Button -->
+
     <Button
         android:id="@+id/startDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Startdatum" />
+        android:text="@string/startdatum" />
 
-    <!-- End Date Button -->
+
     <Button
         android:id="@+id/endDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Slutdatum" />
+        android:text="@string/slutdatum" />
 
-    <!-- Fetch Asteroids Button -->
     <Button
         android:id="@+id/fetchAsteroidsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Hämta Data" />
+        android:text="@string/h_mta_data" />
 
-    <!-- RecyclerView for displaying asteroids -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_asteroids"
         android:layout_width="404dp"
@@ -51,7 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flow" />
 
-    <!-- Flow for aligning start and end date TextViews -->
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow"
         android:layout_width="409dp"
@@ -63,7 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Start Date TextView -->
     <TextView
         android:id="@+id/startDateTv"
         android:layout_width="wrap_content"
@@ -73,7 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- End Date TextView -->
     <TextView
         android:id="@+id/endDateTV"
         android:layout_width="wrap_content"

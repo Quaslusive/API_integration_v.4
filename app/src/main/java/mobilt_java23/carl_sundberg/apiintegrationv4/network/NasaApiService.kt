@@ -3,11 +3,9 @@ package mobilt_java23.carl_sundberg.apiintegrationv4.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 const val BASE_URL = "https://api.nasa.gov/neo/rest/v1/"
-
 
 interface NasaApiService {
 

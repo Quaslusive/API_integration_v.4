@@ -15,26 +15,20 @@ class AsteroidOrbitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_asteroid_orbit, container, false)
 
-        // Hämta asteroidens JPL-länk från argumenten eller ViewModel
+        // Hämta asteroidens JPL-länk från argumenten
         val asteroidJplUrl = arguments?.getString("nasa_jpl_url")
 
         // Hämta WebView och ladda JPL URL
         val webView: WebView = view.findViewById(R.id.orbitWebView)
-        webView.webViewClient = WebViewClient() // Öppna URL inom WebView istället för extern webbläsare
+        webView.webViewClient = WebViewClient()
         webView.settings.useWideViewPort = true
         webView.settings.loadWithOverviewMode = true
-
         webView.settings.javaScriptEnabled = true
-        // Ladda JPL-sidan för asteroidens omloppsbana
         asteroidJplUrl?.let {
             webView.loadUrl(it)
         }
-
-
-
         return view
     }
 }

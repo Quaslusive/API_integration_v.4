@@ -11,89 +11,46 @@ import mobilt_java23.carl_sundberg.apiintegrationv4.network.NasaApi
 
 class AsteroidViewModel : ViewModel() {
 
-    // LiveData for asteroids
     private val _asteroids = MutableLiveData<List<Asteroid>>()
     val asteroids: LiveData<List<Asteroid>> get() = _asteroids
 
-    // LiveData for selected asteroid
-    private val _selectedAsteroid = MutableLiveData<Asteroid>()
-    val selectedAsteroid: LiveData<Asteroid> get() = _selectedAsteroid
-
-    // LiveData for browsing NEOs
-    private val _neoList = MutableLiveData<List<Asteroid>>()
-    val neoList: LiveData<List<Asteroid>> get() = _neoList
-
-   /* // Fetch a list of near-Earth objects from the browse endpoint
-    fun browseNearEarthObjects(apiKey: String) {
-        viewModelScope.launch {
-            try {
-                val response = NasaApi.retrofitService.browseNearEarthObjects(apiKey)
-
-                // Flatten the map into a single list of asteroids
-                val asteroids = response.near_earth_objects.flatMap { it.value }
-
-                // Update the LiveData
-                _neoList.value = asteroids
-
-            } catch (e: Exception) {
-                Log.e("AsteroidViewModel", "Error browsing NEOs: ${e.message}")
-                _neoList.value = emptyList() // Handle error by returning an empty list
-            }
-        }
-    }*/
 
     fun getDateAsteroids(startDate: String, endDate: String, apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = NasaApi.retrofitService.getDateAsteroids(startDate, endDate, apiKey)
-
-                // Flatten the map of near_earth_objects into a list of asteroids
                 val asteroids = response.near_earth_objects.flatMap { it.value }
 
-                // Update the LiveData with the fetched asteroids
                 _asteroids.value = asteroids
             } catch (e: Exception) {
-                // Handle any errors, such as network issues or invalid API responses
-                _asteroids.value = emptyList() // Set to an empty list on error
+                _asteroids.value = emptyList()
             }
         }
     }
 
-
-    // Fetch today's asteroids from NASA's API
     fun getAsteroidsForToday(apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = NasaApi.retrofitService.getTodayAsteroids(apiKey = apiKey)
-
-                // Extract asteroids from JSON and handle `close_approach_data` safely
                 val asteroids = response.near_earth_objects.flatMap { it.value.map { asteroid ->
-                    val closeApproachData = asteroid.close_approach_data.firstOrNull()
+                    asteroid.close_approach_data.firstOrNull()
 
                     Asteroid(
                         id = asteroid.id,
                         name = asteroid.name,
                         absolute_magnitude_h = asteroid.absolute_magnitude_h,
-                        nasa_jpl_url = asteroid.nasa_jpl_url + "&view=VOP", // Add view parameter to the URL
+                        nasa_jpl_url = asteroid.nasa_jpl_url + "&view=VOP",
                         estimated_diameter = asteroid.estimated_diameter,
                         is_potentially_hazardous_asteroid = asteroid.is_potentially_hazardous_asteroid,
                         close_approach_data = asteroid.close_approach_data
                     )
                 }}
-
-                // Update LiveData with the parsed data
                 _asteroids.value = asteroids
 
             } catch (e: Exception) {
-                Log.e("AsteroidViewModel", "Error fetching today's asteroids: ${e.message}")
-                _asteroids.value = emptyList() // Handle error by returning an empty list
+                Log.e("AsteroidViewModel", "Error hämta dagens asteroider: ${e.message}")
+                _asteroids.value = emptyList()
             }
         }
-    }
-
-
-    // Select an asteroid to display its details
-    fun selectAsteroid(asteroid: Asteroid) {
-        _selectedAsteroid.value = asteroid
     }
 }

@@ -15,4 +15,7 @@
     <string name="miss_distans_fr_n_luna">Miss Distans från luna</string>
     <string name="is_potentially_hazardous_asteroid">is Potentially Hazardous Asteroid</string>
     <string name="asteroid_farlig">asteroid_farlig</string>
+    <string name="h_mta_data">Hämta Data</string>
+    <string name="slutdatum">Slutdatum</string>
+    <string name="startdatum">Startdatum</string>
 </resources>

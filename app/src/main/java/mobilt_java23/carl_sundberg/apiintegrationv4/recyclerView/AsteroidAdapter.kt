@@ -12,7 +12,7 @@ import mobilt_java23.carl_sundberg.apiintegrationv4.network.Asteroid
 
 class AsteroidAdapter(
     private val asteroidList: List<Asteroid>,
-    private val onOrbitButtonClick: (String) -> Unit // Pass the JPL URL when the orbit button is clicked
+    private val onOrbitButtonClick: (String) -> Unit
 ) : RecyclerView.Adapter<AsteroidAdapter.AsteroidViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {

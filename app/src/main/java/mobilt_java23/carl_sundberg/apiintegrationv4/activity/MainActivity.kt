@@ -21,23 +21,14 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
-        navController = navHostFragment.navController
-
-        setupActionBarWithNavController(navController)
-
-//val showAsteroidsButton: Button = findViewById(R.id.button_show_asteroids)
         val datePickerBtn: Button = findViewById(R.id.datePickerBtn)
         val todayAsteroidButton: Button = findViewById(R.id.todayAsteroidButton)
-       // val browseBtn: Button = findViewById(R.id.button_browse_asteroids)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        navController = navHostFragment.navController
+        setupActionBarWithNavController(navController)
 
 
-   /*     browseBtn.setOnClickListener {
-            Log.d("carl", "browseAstro Klicked why so slow?")
-            navController.navigate(R.id.asteroidBrowseFragment)
-
-        }
-*/
         todayAsteroidButton.setOnClickListener {
             Log.d("carl", "TodayAstro Klicked why so slow?")
             navController.navigate(R.id.asteroidTodayFragment)

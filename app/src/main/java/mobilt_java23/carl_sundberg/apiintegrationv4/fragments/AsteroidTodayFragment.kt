@@ -28,10 +28,8 @@ class AsteroidTodayFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_asteroids_today)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Fetch today's asteroids from ViewModel
         asteroidViewModel.getAsteroidsForToday(apiKey)
 
-        // Observe the list of asteroids and set up the RecyclerView
         asteroidViewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroidList ->
             recyclerView.adapter = AsteroidAdapter(asteroidList) { jplUrl ->
                 // Handle navigation to AsteroidOrbitFragment with the JPL URL
